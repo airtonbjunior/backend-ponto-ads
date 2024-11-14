@@ -16,7 +16,8 @@ sequelize.sync({ alter: true })
 });
 
 
-const airton = Usuario.create({ nome: "airton2", email: "airton2.junior@ceub.edu.br", login: "airton2", senha: "123"});
+//const airton = Usuario.create({ nome: "airton2", email: "airton2.junior@ceub.edu.br", login: "airton2", senha: "123"});
+
 
 app.get("/user/:id1-:id2", (req, res) => {
     console.log(req.params);
