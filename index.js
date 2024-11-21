@@ -20,9 +20,6 @@ sequelize.sync({ alter: true })
     .catch(error => { console.log("deu erro!")
 });
 
-
-//const airton = Usuario.create({ nome: "airton2", email: "airton2.junior@ceub.edu.br", login: "airton2", senha: "123"});
-
 // Rota que recupera todos os usuários do sistema
 app.get('/usuarios', async (req, res) => {
     
@@ -58,6 +55,34 @@ app.post('/usuario', async (req, res) => {
 
 
     res.json(usuario);
+});
+
+
+// Rota que atualiza um usuário
+app.put('/usuario/:id_usuario', async (req, res) => {
+
+    // 1 - recupera o usuário de id "id_usuario" (busca no bd)
+    const usuario = await Usuario.findByPk(req.params.id_usuario);
+
+    // 2 - atualizar a instância do usuário
+    const usuarioAtualizado = await usuario.update({        
+        nome: req.body.nome,
+        email: req.body.email,
+        senha: req.body.senha,
+        login: req.body.login
+    });
+
+    res.json(usuarioAtualizado);
+});
+
+
+// Rota que deleta um usuário específico
+app.delete('/usuario/:id_usuario', (req, res) => {
+
+    // 1 - procure o usuário pela chave primária (req.params.id_usuario) (findByPk)
+    // 2 - remova a instância retornada pela busca com a chave primária (método destroy())
+    // 3 - retorne um texto para o usuário com sucesso ou fracasso
+
 });
 
 
