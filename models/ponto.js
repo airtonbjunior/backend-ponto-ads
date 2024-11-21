@@ -26,6 +26,14 @@ const Ponto = sequelize.define('Ponto', {
     tipo: {
         type: DataTypes.ENUM('entrada', 'saida', 'intervalo', 'volta'),
         allowNull: false
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: "Usuarios",
+            key: "id_usuario"
+        }
     }
 },{
     timestamps: true
